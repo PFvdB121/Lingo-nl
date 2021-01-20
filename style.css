@@ -46,7 +46,6 @@ li{
 	border-color: black;
 	border-style: solid;
 	border-radius: 5px;
-	order: 4;
 }
 #clock{
 	position: relative;
@@ -71,14 +70,17 @@ li{
 	left: 300px;
 	top: -1px;
 }
-#outcomeL{
-	order: 1;
+#lingo img{
+	position: absolute;
+	height: 500px;
+	top: -50px;
 }
-#answerL{
-	order: 2;
+#lingo img:nth-of-type(1){
+	left: -549.73px;
 }
-#emoji{
-	order: 3;
+#lingo img:nth-of-type(2){
+	left: 449.73px;
+	transform: scaleX(-1);
 }
 .BLingo{
 	position: relative;

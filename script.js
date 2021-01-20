@@ -6,6 +6,7 @@ var mySound;
 var right;
 var result;
 var CrImg;
+var rightW;
 var CrMenu = document.createElement("div");
 document.body.appendChild(CrMenu);
 CrMenu.id="menu";
@@ -40,11 +41,13 @@ function lingo(){
 			CrLI.style.color=colors[x];
 		}
 	}
-	/*for (var i = 0; i < 2; i++) {
+	for (var i = 0; i < 2; i++) {
 		var CrDImg = document.createElement("img");
 		CrLingo.appendChild(CrDImg);
 		CrDImg.src="denker.png";
-	}*/
+		CrDImg.alt="De Denker";
+		CrDImg.className="denker";
+	}
 	clock.innerText = "tijd: " + time;
 	clock.id="clock";
 	var CrBox = document.createElement("div");
@@ -135,6 +138,7 @@ function lingo(){
 			EI = setInterval(checkRL, 500);
 			if (points==5) {
 				outcome();
+				win();
 			}
 		}
 	}
@@ -174,6 +178,7 @@ function lingo(){
 			EI = setInterval(timer, 1000);
 			if (chances==5) {
 				outcome();
+				lose();
 			}
 		}
 	}
@@ -187,6 +192,8 @@ function lingo(){
 		CrMenu.appendChild(result);
 		result.id="outcomeL"
 		result.style.fontSize="100px";
+		rightW = document.createElement("h2");
+		CrMenu.appendChild(rightW);
 		button = document.createElement("input");
 		CrMenu.appendChild(button);
 		button.type=button.name="button";
@@ -196,20 +203,19 @@ function lingo(){
 		CrMenu.appendChild(CrImg);
 		CrImg.id="emoji";
 		clearInterval(EI);
-		if (points==5) {
-			result.innerText="gewonnen";
-			CrImg.src = "smiley.jpg";
-			CrImg.alt="smiley";
-		}
-		else if (chances==5) {
-			var rightW = document.createElement("h2");
-			CrMenu.appendChild(rightW);
-			rightW.id="answerL";
-			result.innerText="verloren";
-			rightW.innerText="Het correcte woord is: " + RWord;
-			CrImg.src = "huilen.jpg";
-			CrImg.alt="huilen";
-		}
+	}
+	function win(){
+		result.innerText="gewonnen";
+		rightW.remove();
+		CrImg.src = "smiley.jpg";
+		CrImg.alt="smiley";
+	}
+	function lose(){
+		rightW.id="answerL";
+		result.innerText="verloren";
+		rightW.innerText="Het correcte woord is: " + RWord;
+		CrImg.src = "huilen.jpg";
+		CrImg.alt="huilen";
 	}
 	function timer(){
 		time--
@@ -217,6 +223,7 @@ function lingo(){
 		if (time==0) {
 			chances=5;
 			outcome();
+			lose();
 		}
 	}
 }
